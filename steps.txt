@@ -1,0 +1,33 @@
+create instance pilih 4gb saja dulu
+kemudian jgn lupa centang http dan https
+-update kernel dulu-
+sudo apt update
+sudo apt upgrade -y
+sudo reboots
+-update end-
+
+-firewall activate-
+sudo ufw enable && sudo ufw allow ssh
+sudo apt install nginx
+sudo ufw allow 'Nginx HTTP'
+sudo ufw allow 'Nginx HTTPS'
+sudo ufw status
+-fw end-
+
+
+# https://certbot.eff.org/
+—folow guide from  website-
+sudo snap install core; sudo snap refresh core
+sudo apt-get remove certbot
+sudo snap install —-classic certbot
+sudo ln -s /snap/bin/certbot /usr/bin/certbot
+-guide end here-
+
+
+dns management create A record di dns management domain kemudian masukkan IP dari instance ke dns management setelah berhasil setup certbot. apabila menggunakan rumahweb jgn lupa tekan tombol update
+
+sudo certbot --nginx -d <domain.com>
+sudo vi /etc/nginx/sites-available/default
+sudo nginx -t && sudo nginx -s reload
+
+dig <domain.com>
